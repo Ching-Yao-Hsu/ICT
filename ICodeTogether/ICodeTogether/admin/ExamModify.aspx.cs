@@ -16,7 +16,43 @@ namespace ICodeTogether.admin
 
         protected void btn_search_Click(object sender, EventArgs e)
         {
-            
+            if (txt_search.Text == string.Empty)
+            {
+                lv_joincourse.DataSourceID = "sds_joincourse";
+            }
+            else
+            {
+                lv_joincourse.DataSourceID = "sds_search";
+            }
+            lv_joinexamination.DataSourceID = "";
+            lv_joinexamination.Visible = false;
+            lv_modifyExam.DataSourceID = "";
+            lv_modifyExam.Visible = false;
         }
+
+        protected void lv_joincourse_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                lv_joinexamination.DataSourceID = "sds_joinexamination";
+                lv_joinexamination.Visible = true;
+                lv_modifyExam.DataSourceID = "";
+                lv_modifyExam.Visible = false;
+            }
+        }
+
+        protected void lv_joinexamination_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                lv_modifyExam.DataSourceID = "sds_modifyExamDetail";
+                lv_modifyExam.Visible = true;                
+            }
+        }
+
+        protected void lv_modifyExam_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            lv_joinexamination.DataSourceID = "sds_joinexamination";
+        }        
     }
 }

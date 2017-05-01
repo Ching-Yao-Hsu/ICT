@@ -97,7 +97,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:;" data-link="CourseModify">課程修改</a></li>
-                                <li><a href="javascript:;">題庫修改</a></li>
+                                <li><a href="javascript:;" data-link="ExamModify">題庫修改</a></li>
                             </ul>
                         </div>
                     </li>

@@ -17,6 +17,7 @@ namespace ICodeTogether
             if (!IsPostBack)
             {
                 CheckBuy();
+                ChangeURL();
             }
         }
 
@@ -123,6 +124,23 @@ namespace ICodeTogether
                 }
             }
             return _str_CourseNo;
+        }
+
+
+        protected void ChangeURL()
+        {
+            if (Session["savepass"] != null || Request.Cookies["ICT"] != null)
+            {
+                hyl_Hbuy.NavigateUrl = "cus_mag.aspx";
+                hyl_Cbuy.NavigateUrl = "cus_mag.aspx";
+                hyl_Sbuy.NavigateUrl = "cus_mag.aspx";
+            }
+            else
+            {
+                hyl_Hbuy.NavigateUrl = "SecondPage/Login.aspx";
+                hyl_Cbuy.NavigateUrl = "SecondPage/Login.aspx";
+                hyl_Sbuy.NavigateUrl = "SecondPage/Login.aspx";
+            }
         }
     }
 }

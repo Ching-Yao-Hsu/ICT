@@ -36,7 +36,11 @@
                     <asp:ListItem Value="">請選擇</asp:ListItem>
                 </asp:DropDownList>
                 
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [NoteTitle], [NoteContent] FROM [Note]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [NoteTitle], [CustID], [NoteContent] FROM [Note] WHERE ([CustID] = @CustID)">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="CustID" SessionField="savepass" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
                 
             </p>
 

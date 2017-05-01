@@ -12,9 +12,10 @@ namespace ICodeTogether
 {
     public partial class AddNotebook : System.Web.UI.Page
     {
+        private string strCustID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            strCustID = Session["savepass"].ToString();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -29,13 +30,14 @@ namespace ICodeTogether
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@title", SqlDbType.NVarChar));
                     cmd.Parameters.Add(new SqlParameter("@content", SqlDbType.NVarChar));
-                    cmd.Parameters.Add(new SqlParameter("@datetime", SqlDbType.DateTime));
-           
+                    //cmd.Parameters.Add(new SqlParameter("@datetime", SqlDbType.DateTime));
+                    cmd.Parameters.Add(new SqlParameter("@savepass", strCustID));
 
 
                     cmd.Parameters["@title"].Value = txtTitle.Text;
                     cmd.Parameters["@content"].Value = txtContent.Text;
-                    cmd.Parameters["@datetime"].Value = DateTime.Now.ToString();
+                    //cmd.Parameters["@datetime"].Value = DateTime.Now.ToString();
+               
                     
 
                     cmd.ExecuteNonQuery();

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExamModify.aspx.cs" Inherits="ICodeTogether.admin.ExamModify" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExamModify.aspx.cs" Inherits="ICodeTogether.admin.ExamModify" MaintainScrollPositionOnPostback="true"%>
 
 <!DOCTYPE html>
 
@@ -24,7 +24,7 @@
     <form id="form1" runat="server">
         <div class="container">
             <div>
-                <h1>留言板修改</h1>
+                <h1>題目修改</h1>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="CourseNo">
+            <asp:ListView ID="lv_joincourse" runat="server" DataSourceID="sds_joincourse" DataKeyNames="TopicNo" OnItemCommand="lv_joincourse_ItemCommand">
                 <AlternatingItemTemplate>
                     <tr style="">
                         <td>
@@ -47,7 +47,22 @@
                             <asp:Label ID="CourseNameLabel" runat="server" Text='<%# Eval("CourseName") %>' />
                         </td>
                         <td>
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />
+                            <asp:Label ID="CoursePriceLabel" runat="server" Text='<%# Eval("CoursePrice") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TestNoLabel" runat="server" Text='<%# Eval("TestNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TopicNoLabel" runat="server" Text='<%# Eval("TopicNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TopicNameLabel" runat="server" Text='<%# Eval("TopicName") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
                         </td>
                     </tr>
                 </AlternatingItemTemplate>
@@ -63,12 +78,27 @@
                         <td>
                             <asp:TextBox ID="CourseNameTextBox" runat="server" Text='<%# Bind("CourseName") %>' />
                         </td>
+                        <td>
+                            <asp:TextBox ID="CoursePriceTextBox" runat="server" Text='<%# Bind("CoursePrice") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TestNoTextBox" runat="server" Text='<%# Bind("TestNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TestNameTextBox" runat="server" Text='<%# Bind("TestName") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TopicNoTextBox" runat="server" Text='<%# Bind("TopicNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TopicNameTextBox" runat="server" Text='<%# Bind("TopicName") %>' />
+                        </td>
                     </tr>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
-                    <table runat="server" style="">
+                    <table runat="server" style="color:red;">
                         <tr>
-                            <td>未傳回資料。</td>
+                            <td><h3>查無此資料~~~!!</h3></td>
                         </tr>
                     </table>
                 </EmptyDataTemplate>
@@ -84,6 +114,21 @@
                         <td>
                             <asp:TextBox ID="CourseNameTextBox" runat="server" Text='<%# Bind("CourseName") %>' />
                         </td>
+                        <td>
+                            <asp:TextBox ID="CoursePriceTextBox" runat="server" Text='<%# Bind("CoursePrice") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TestNoTextBox" runat="server" Text='<%# Bind("TestNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TestNameTextBox" runat="server" Text='<%# Bind("TestName") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TopicNoTextBox" runat="server" Text='<%# Bind("TopicNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TopicNameTextBox" runat="server" Text='<%# Bind("TopicName") %>' />
+                        </td>
                     </tr>
                 </InsertItemTemplate>
                 <ItemTemplate>
@@ -95,18 +140,39 @@
                             <asp:Label ID="CourseNameLabel" runat="server" Text='<%# Eval("CourseName") %>' />
                         </td>
                         <td>
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />
+                            <asp:Label ID="CoursePriceLabel" runat="server" Text='<%# Eval("CoursePrice") %>' />
                         </td>
+                        <td>
+                            <asp:Label ID="TestNoLabel" runat="server" Text='<%# Eval("TestNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TopicNoLabel" runat="server" Text='<%# Eval("TopicNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="TopicNameLabel" runat="server" Text='<%# Eval("TopicName") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
+                        </td>
+
                     </tr>
                 </ItemTemplate>
                 <LayoutTemplate>
-                    <table runat="server">
+                    <table runat="server" class="table">
                         <tr runat="server">
                             <td runat="server">
-                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
+                                <table id="itemPlaceholderContainer" runat="server" border="0" style="" class="table">
                                     <tr runat="server" style="">
-                                        <th runat="server">CourseNo</th>
-                                        <th runat="server">CourseName</th>
+                                        <th runat="server">課程編號</th>
+                                        <th runat="server">課程名稱</th>
+                                        <th runat="server">課程價格</th>
+                                        <th runat="server">測驗編號</th>
+                                        <th runat="server">測驗名稱</th>
+                                        <th runat="server">項目編號</th>
+                                        <th runat="server">測驗項目</th>
                                         <th></th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
@@ -116,7 +182,7 @@
                         </tr>
                         <tr runat="server">
                             <td runat="server" style="">
-                                <asp:DataPager ID="DataPager1" runat="server">
+                                <asp:DataPager ID="DataPager1" runat="server" PageSize="5">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                         <asp:NumericPagerField />
@@ -136,225 +202,13 @@
                             <asp:Label ID="CourseNameLabel" runat="server" Text='<%# Eval("CourseName") %>' />
                         </td>
                         <td>
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
-            </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [CourseNo], [CourseName] FROM [Course]"></asp:SqlDataSource>
-            
-            <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="rowid" InsertItemPosition="LastItem">
-                <AlternatingItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />                            
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />                        
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
+                            <asp:Label ID="CoursePriceLabel" runat="server" Text='<%# Eval("CoursePrice") %>' />
                         </td>
                         <td>
                             <asp:Label ID="TestNoLabel" runat="server" Text='<%# Eval("TestNo") %>' />
                         </td>
-                         <td>
-                             <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
-                        </td>
-                    </tr>
-                </AlternatingItemTemplate>
-                <EditItemTemplate>
-                    <tr style="">
                         <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel1" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TestNoTextBox" runat="server" Text='<%# Bind("TestNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TestNameTextBox" runat="server" Text='<%# Bind("TestName") %>' />
-                        </td>
-                    </tr>
-                </EditItemTemplate>
-                <EmptyDataTemplate>
-                    <table runat="server" style="">
-                        <tr>
-                            <td>未傳回資料。</td>
-                        </tr>
-                    </table>
-                </EmptyDataTemplate>
-                <InsertItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
-                        <td>
-                            &nbsp;</td>
-                        <td>
-                            <asp:TextBox ID="TestNoTextBox" runat="server" Text='<%# Bind("TestNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TestNameTextBox" runat="server" Text='<%# Bind("TestName") %>' />
-                        </td>
-                    </tr>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />                            
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />                      
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="TestNoLabel" runat="server" Text='<%# Eval("TestNo") %>' />
-                        </td>
-                         <td>
-                             <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <td runat="server">
-                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
-                                    <tr runat="server" style="">
-                                        <th runat="server"></th>
-                                        <th runat="server">rowid</th>
-                                        <th runat="server">TestNo</th>
-                                        <th runat="server">TestName</th>
-                                    </tr>
-                                    <tr id="itemPlaceholder" runat="server">
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr runat="server">
-                            <td runat="server" style="">
-                                <asp:DataPager ID="DataPager1" runat="server">
-                                    <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                        <asp:NumericPagerField />
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                    </Fields>
-                                </asp:DataPager>
-                            </td>
-                        </tr>
-                    </table>
-                </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />                           
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />                      
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="TestNoLabel" runat="server" Text='<%# Eval("TestNo") %>' />
-                        </td>
-                         <td>
-                             <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
-            </asp:ListView>
-
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [rowid], [TestNo], [TestName] FROM [Exam_Test] WHERE ([CourseNo] = @CourseNo)" DeleteCommand="DELETE FROM [Exam_Test] WHERE [rowid] = @rowid" InsertCommand="INSERT INTO [Exam_Test] ([TestNo], [TestName]) VALUES (@TestNo, @TestName)" UpdateCommand="UPDATE [Exam_Test] SET [TestNo] = @TestNo, [TestName] = @TestName WHERE [rowid] = @rowid">
-                <DeleteParameters>
-                    <asp:Parameter Name="rowid" Type="Int32" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="TestNo" Type="String" />
-                    <asp:Parameter Name="TestName" Type="String" />
-                </InsertParameters>
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="ListView1" Name="CourseNo" PropertyName="SelectedValue" Type="String" />
-                </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="TestNo" Type="String" />
-                    <asp:Parameter Name="TestName" Type="String" />
-                    <asp:Parameter Name="rowid" Type="Int32" />
-                </UpdateParameters>
-            </asp:SqlDataSource>
-
-            <asp:ListView ID="ListView3" runat="server" DataSourceID="SqlDataSource3" DataKeyNames="rowid" InsertItemPosition="LastItem">
-                <AlternatingItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />                            
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />                        
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="TopicNoLabel" runat="server" Text='<%# Eval("TopicNo") %>' />
-                        </td>                         
-                        <td>
-                            <asp:Label ID="TopicNameLabel" runat="server" Text='<%# Eval("TopicName") %>' />
-                        </td>
-                    </tr>
-                </AlternatingItemTemplate>
-                <EditItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel1" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TopicNoTextBox" runat="server" Text='<%# Bind("TopicNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TopicNameTextBox" runat="server" Text='<%# Bind("TopicName") %>' />
-                        </td>
-                    </tr>
-                </EditItemTemplate>
-                <EmptyDataTemplate>
-                    <table runat="server" style="">
-                        <tr>
-                            <td>未傳回資料。</td>
-                        </tr>
-                    </table>
-                </EmptyDataTemplate>
-                <InsertItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
-                        <td>
-                            &nbsp;</td>
-                        <td>
-                            <asp:TextBox ID="TopicNoTextBox" runat="server" Text='<%# Bind("TopicNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TopicNameTextBox" runat="server" Text='<%# Bind("TopicName") %>' />
-                        </td>
-                    </tr>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
+                            <asp:Label ID="TestNameLabel" runat="server" Text='<%# Eval("TestName") %>' />
                         </td>
                         <td>
                             <asp:Label ID="TopicNoLabel" runat="server" Text='<%# Eval("TopicNo") %>' />
@@ -362,85 +216,18 @@
                         <td>
                             <asp:Label ID="TopicNameLabel" runat="server" Text='<%# Eval("TopicName") %>' />
                         </td>
-                    </tr>
-                </ItemTemplate>
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <td runat="server">
-                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
-                                    <tr runat="server" style="">
-                                        <th runat="server"></th>
-                                        <th runat="server">rowid</th>
-                                        <th runat="server">TopicNo</th>
-                                        <th runat="server">TopicName</th>
-                                    </tr>
-                                    <tr id="itemPlaceholder" runat="server">
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr runat="server">
-                            <td runat="server" style="">
-                                <asp:DataPager ID="DataPager1" runat="server">
-                                    <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                        <asp:NumericPagerField />
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                    </Fields>
-                                </asp:DataPager>
-                            </td>
-                        </tr>
-                    </table>
-                </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="">
                         <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="TopicNoLabel" runat="server" Text='<%# Eval("TopicNo") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="TopicNameLabel" runat="server" Text='<%# Eval("TopicName") %>' />
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
                         </td>
                     </tr>
                 </SelectedItemTemplate>
             </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [rowid], [TopicNo], [TopicName] FROM [Exam_Test_Topic] WHERE ([TestNo] = @TestNo)" DeleteCommand="DELETE FROM [Exam_Test_Topic] WHERE [rowid] = @rowid" InsertCommand="INSERT INTO [Exam_Test_Topic] ([TopicNo], [TopicName]) VALUES (@TopicNo, @TopicName)" UpdateCommand="UPDATE [Exam_Test_Topic] SET [TopicNo] = @TopicNo, [TopicName] = @TopicName WHERE [rowid] = @rowid">
-                <DeleteParameters>
-                    <asp:Parameter Name="rowid" Type="Int32" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="TopicNo" Type="String" />
-                    <asp:Parameter Name="TopicName" Type="String" />
-                </InsertParameters>
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="ListView2" Name="TestNo" PropertyName="SelectedValue" Type="String" />
-                </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="TopicNo" Type="String" />
-                    <asp:Parameter Name="TopicName" Type="String" />
-                    <asp:Parameter Name="rowid" Type="Int32" />
-                </UpdateParameters>
-            </asp:SqlDataSource>
 
-            <asp:ListView ID="ListView4" runat="server" DataKeyNames="ExNo" DataSourceID="SqlDataSource4" InsertItemPosition="LastItem">
+
+
+            <asp:ListView ID="lv_joinexamination" runat="server" DataKeyNames="ExNo" DataSourceID="sds_joinexamination" Visible="False" OnItemCommand="lv_joinexamination_ItemCommand">
                 <AlternatingItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
                         <td>
                             <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
                         </td>
@@ -453,6 +240,12 @@
                         <td>
                             <asp:Label ID="ExAnswerLabel" runat="server" Text='<%# Eval("ExAnswer") %>' />
                         </td>
+                        <td>
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
+                        </td>
                     </tr>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
@@ -460,9 +253,6 @@
                         <td>
                             <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
                             <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel1" runat="server" Text='<%# Eval("rowid") %>' />
                         </td>
                         <td>
                             <asp:Label ID="ExNoLabel1" runat="server" Text='<%# Eval("ExNo") %>' />
@@ -476,12 +266,15 @@
                         <td>
                             <asp:TextBox ID="ExAnswerTextBox" runat="server" Text='<%# Bind("ExAnswer") %>' />
                         </td>
+                        <td>
+                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
+                        </td>
                     </tr>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
-                    <table runat="server" style="">
+                    <table runat="server" style="color:red;">
                         <tr>
-                            <td>未傳回資料。</td>
+                            <td><h3>尚未建立題目~~!!</h3></td>
                         </tr>
                     </table>
                 </EmptyDataTemplate>
@@ -491,8 +284,6 @@
                             <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
                             <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
                         </td>
-                        <td>
-                            &nbsp;</td>
                         <td>
                             <asp:TextBox ID="ExNoTextBox" runat="server" Text='<%# Bind("ExNo") %>' />
                         </td>
@@ -505,17 +296,13 @@
                         <td>
                             <asp:TextBox ID="ExAnswerTextBox" runat="server" Text='<%# Bind("ExAnswer") %>' />
                         </td>
+                        <td>
+                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
+                        </td>
                     </tr>
                 </InsertItemTemplate>
                 <ItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
                         <td>
                             <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
                         </td>
@@ -528,20 +315,157 @@
                         <td>
                             <asp:Label ID="ExAnswerLabel" runat="server" Text='<%# Eval("ExAnswer") %>' />
                         </td>
+                        <td>
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
+                        </td>
                     </tr>
                 </ItemTemplate>
                 <LayoutTemplate>
-                    <table runat="server">
+                    <table runat="server" class="table">
                         <tr runat="server">
                             <td runat="server">
-                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
+                                <table id="itemPlaceholderContainer" runat="server" border="0" style="" class="table">
                                     <tr runat="server" style="">
+                                        <th runat="server">題目編號</th>
+                                        <th runat="server">題目名稱</th>
+                                        <th runat="server">題目內容</th>
+                                        <th runat="server">題目答案</th>
+                                        <th runat="server">題目選項</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr id="itemPlaceholder" runat="server">
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr runat="server">
+                            <td runat="server" style="">
+                                <asp:DataPager ID="DataPager1" runat="server" PageSize="5">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                        <asp:NumericPagerField />
+                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                    </Fields>                                    
+                                </asp:DataPager>
+                            </td>
+                        </tr>
+                    </table>
+                </LayoutTemplate>
+                <SelectedItemTemplate>
+                    <tr style="background-color:antiquewhite;">
+                        <td>
+                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExNameLabel" runat="server" Text='<%# Eval("ExName") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExContentLabel" runat="server" Text='<%# Eval("ExContent") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExAnswerLabel" runat="server" Text='<%# Eval("ExAnswer") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" Enabled="True" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </SelectedItemTemplate>
+            </asp:ListView>
+            
+            <asp:ListView ID="lv_modifyExam" runat="server" DataKeyNames="rowid" InsertItemPosition="LastItem" OnItemCommand="lv_modifyExam_ItemCommand" Visible="False" DataSourceID="sds_modifyExamDetail">
+                <AlternatingItemTemplate>
+                    <tr style="">
+                       
+                        <td>
+                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
+                        </td>
+                         <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" class="btn btn-primary" OnClientClick="return confirm('確定要刪除??')"/>
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" class="btn btn-primary"/>
+                        </td>
+                    </tr>
+                </AlternatingItemTemplate>
+                <EditItemTemplate>
+                    <tr style="">
+                        
+                        <td>
+                            <asp:Label ID="rowidLabel1" runat="server" Text='<%# Eval("rowid") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="ExNoTextBox" runat="server" Text='<%# Bind("ExNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" class="btn btn-primary"/>
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" class="btn btn-primary"/>
+                        </td>
+                    </tr>
+                </EditItemTemplate>
+                <EmptyDataTemplate>
+                    <table runat="server" style="">
+                        <tr>
+                            <td>未傳回資料。</td>
+                        </tr>
+                    </table>
+                </EmptyDataTemplate>
+                <InsertItemTemplate>
+                    <tr style="">
+                        
+                        <td>&nbsp;</td>
+                        <td>
+                            <asp:TextBox ID="ExNoTextBox" runat="server" Text='<%# Bind("ExNo") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" class="btn btn-primary"/>
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" class="btn btn-primary"/>
+                        </td>
+                    </tr>
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    <tr style="">                        
+                        <td>
+                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
+                        </td>
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" class="btn btn-primary" OnClientClick="return confirm('確定要刪除??')"/>
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" class="btn btn-primary"/>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <LayoutTemplate>
+                    <table runat="server" class="table">
+                        <tr runat="server">
+                            <td runat="server">
+                                <table id="itemPlaceholderContainer" runat="server" border="0" style="" class="table">
+                                    <tr runat="server" style="">
+                                        
+                                        <th runat="server">編號</th>
+                                        <th runat="server">題目編號</th>
+                                        <th runat="server">題目選項</th>
                                         <th runat="server"></th>
-                                        <th runat="server">rowid</th>
-                                        <th runat="server">ExNo</th>
-                                        <th runat="server">ExName</th>
-                                        <th runat="server">ExContent</th>
-                                        <th runat="server">ExAnswer</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -563,11 +487,7 @@
                 </LayoutTemplate>
                 <SelectedItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
+                        
                         <td>
                             <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
                         </td>
@@ -575,164 +495,34 @@
                             <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="ExNameLabel" runat="server" Text='<%# Eval("ExName") %>' />
+                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="ExContentLabel" runat="server" Text='<%# Eval("ExContent") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExAnswerLabel" runat="server" Text='<%# Eval("ExAnswer") %>' />
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" class="btn btn-primary" OnClientClick="return confirm('確定要刪除??')"/>
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </SelectedItemTemplate>
             </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [rowid], [ExNo], [ExName], [ExContent], [ExAnswer] FROM [Examination] WHERE ([TopicNo] = @TopicNo)" DeleteCommand="DELETE FROM [Examination] WHERE [ExNo] = @ExNo" InsertCommand="INSERT INTO [Examination] ([ExNo], [ExName], [ExContent], [ExAnswer]) VALUES (@ExNo, @ExName, @ExContent, @ExAnswer)" UpdateCommand="UPDATE [Examination] SET [rowid] = @rowid, [ExName] = @ExName, [ExContent] = @ExContent, [ExAnswer] = @ExAnswer WHERE [ExNo] = @ExNo">
-                <DeleteParameters>
-                    <asp:Parameter Name="ExNo" Type="String" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="ExNo" Type="String" />
-                    <asp:Parameter Name="ExName" Type="String" />
-                    <asp:Parameter Name="ExContent" Type="String" />
-                    <asp:Parameter Name="ExAnswer" Type="String" />
-                </InsertParameters>
+
+
+            <asp:SqlDataSource ID="sds_joincourse" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [CourseNo], [CourseName], [CoursePrice], [TestNo], [TestName], [TopicNo], [TopicName] FROM [join_course_ExamTest_ExamTestTopic] ORDER BY [CourseNo]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="sds_joinexamination" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [ExNo], [ExName], [ExContent], [ExAnswer], [ExOption] FROM [join_ExamnitionANDExamnition_detail] WHERE ([TopicNo] = @TopicNo) ORDER BY [ExNo]">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="ListView3" Name="TopicNo" PropertyName="SelectedValue" Type="String" />
+                    <asp:ControlParameter ControlID="lv_joincourse" Name="TopicNo" PropertyName="SelectedValue" Type="String" />
                 </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="rowid" Type="Int32" />
-                    <asp:Parameter Name="ExName" Type="String" />
-                    <asp:Parameter Name="ExContent" Type="String" />
-                    <asp:Parameter Name="ExAnswer" Type="String" />
-                    <asp:Parameter Name="ExNo" Type="String" />
-                </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:ListView ID="ListView5" runat="server" DataKeyNames="rowid" DataSourceID="SqlDataSource5" InsertItemPosition="LastItem">
-                <AlternatingItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
-                        </td>
-                    </tr>
-                </AlternatingItemTemplate>
-                <EditItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel1" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ExNoTextBox" runat="server" Text='<%# Bind("ExNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
-                        </td>
-                    </tr>
-                </EditItemTemplate>
-                <EmptyDataTemplate>
-                    <table runat="server" style="">
-                        <tr>
-                            <td>未傳回資料。</td>
-                        </tr>
-                    </table>
-                </EmptyDataTemplate>
-                <InsertItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
-                        <td>&nbsp;</td>
-                        <td>
-                            <asp:TextBox ID="ExNoTextBox" runat="server" Text='<%# Bind("ExNo") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ExOptionTextBox" runat="server" Text='<%# Bind("ExOption") %>' />
-                        </td>
-                    </tr>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <td runat="server">
-                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
-                                    <tr runat="server" style="">
-                                        <th runat="server"></th>
-                                        <th runat="server">rowid</th>
-                                        <th runat="server">ExNo</th>
-                                        <th runat="server">ExOption</th>
-                                    </tr>
-                                    <tr id="itemPlaceholder" runat="server">
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr runat="server">
-                            <td runat="server" style="">
-                                <asp:DataPager ID="DataPager1" runat="server">
-                                    <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
-                                    </Fields>
-                                </asp:DataPager>
-                            </td>
-                        </tr>
-                    </table>
-                </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="刪除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="編輯" />
-                            <asp:Button ID="Button1" runat="server" Text="選取" CommandName="Select" class="btn btn-primary" />     
-                        </td>
-                        <td>
-                            <asp:Label ID="rowidLabel" runat="server" Text='<%# Eval("rowid") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExNoLabel" runat="server" Text='<%# Eval("ExNo") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="ExOptionLabel" runat="server" Text='<%# Eval("ExOption") %>' />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
-            </asp:ListView>
-
-
-
-            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [rowid], [ExNo], [ExOption] FROM [Examination_detail] WHERE ([ExNo] = @ExNo)" DeleteCommand="DELETE FROM [Examination_detail] WHERE [rowid] = @rowid" InsertCommand="INSERT INTO [Examination_detail] ([ExNo], [ExOption]) VALUES (@ExNo, @ExOption)" UpdateCommand="UPDATE [Examination_detail] SET [ExNo] = @ExNo, [ExOption] = @ExOption WHERE [rowid] = @rowid">
+            <asp:SqlDataSource ID="sds_search" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [CourseNo], [CourseName], [CoursePrice], [TestNo], [TestName], [TopicNo], [TopicName] FROM [join_course_ExamTest_ExamTestTopic] WHERE (([CourseNo] LIKE '%' + @CourseNo + '%') OR ([CourseName] LIKE '%' + @CourseName + '%') OR ([TestName] LIKE '%' + @TestName + '%') OR ([TestNo] LIKE '%' + @TestNo + '%') OR ([TopicName] LIKE '%' + @TopicName + '%') OR ([TopicNo] LIKE '%' + @TopicNo + '%')) ORDER BY [CourseNo]">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="txt_search" Name="CourseNo" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="txt_search" Name="CourseName" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="txt_search" Name="TestName" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="txt_search" Name="TestNo" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="txt_search" Name="TopicName" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="txt_search" Name="TopicNo" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="sds_modifyExamDetail" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" DeleteCommand="DELETE FROM [Examination_detail] WHERE [rowid] = @rowid" InsertCommand="INSERT INTO [Examination_detail] ([ExNo], [ExOption]) VALUES (@ExNo, @ExOption)" SelectCommand="SELECT [ExNo], [ExOption], [rowid] FROM [Examination_detail] WHERE ([ExNo] = @ExNo) ORDER BY [ExNo]" UpdateCommand="UPDATE [Examination_detail] SET [ExNo] = @ExNo, [ExOption] = @ExOption WHERE [rowid] = @rowid">
                 <DeleteParameters>
                     <asp:Parameter Name="rowid" Type="Int32" />
                 </DeleteParameters>
@@ -741,7 +531,7 @@
                     <asp:Parameter Name="ExOption" Type="String" />
                 </InsertParameters>
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="ListView4" Name="ExNo" PropertyName="SelectedValue" Type="String" />
+                    <asp:ControlParameter ControlID="lv_joinexamination" Name="ExNo" PropertyName="SelectedValue" Type="String" />
                 </SelectParameters>
                 <UpdateParameters>
                     <asp:Parameter Name="ExNo" Type="String" />
@@ -749,7 +539,6 @@
                     <asp:Parameter Name="rowid" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-
 
 
         </div>

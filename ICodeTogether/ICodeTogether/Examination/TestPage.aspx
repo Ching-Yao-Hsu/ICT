@@ -63,7 +63,7 @@
                 </p>
                 <div>
                     <div class="input-group">
-                        <asp:RadioButtonList ID="rbl_Option" runat="server" DataSourceID="sds_option" DataTextField="ExOption" DataValueField="ExOption" Font-Size="X-Large">
+                        <asp:RadioButtonList ID="rbl_Option" runat="server" DataSourceID="sds_option" DataTextField="ExOption" DataValueField="ExOption" Font-Size="Medium">
                         </asp:RadioButtonList>
 
                         <asp:SqlDataSource ID="sds_option" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT [ExOption] FROM [Examination_detail] WHERE ([ExNo] = @ExNo)"></asp:SqlDataSource>

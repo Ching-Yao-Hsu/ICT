@@ -102,7 +102,15 @@ namespace ICodeTogether.Cus_managemant
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    lbl_balance.Text = dt.Rows[0][0].ToString();
+                    if (dt.Rows.Count <= 0)
+                    {
+                        lbl_balance.Text = "0";
+                    }
+                    else
+                    {
+                        lbl_balance.Text = dt.Rows[0][0].ToString();
+                    }
+                        
                     
                 }
             }           

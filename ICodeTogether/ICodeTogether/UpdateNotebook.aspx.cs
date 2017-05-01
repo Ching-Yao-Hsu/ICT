@@ -12,16 +12,19 @@ namespace ICodeTogether
 {
     public partial class notebook : System.Web.UI.Page
     {
-        
+        private string strUserName;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            strUserName = Session["username"].ToString();
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {              
+        {
+            //DropDownList1.SelectedValue = Session["username"].ToString();
             txtContent.Text = DropDownList1.SelectedValue;
             //Response.Write(DropDownList1.SelectedItem); //測試所選取的值
+
+
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

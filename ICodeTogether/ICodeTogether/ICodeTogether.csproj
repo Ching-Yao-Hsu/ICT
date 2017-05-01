@@ -93,7 +93,6 @@
     <Content Include="Course\images\main\小灰三.jpg" />
     <Content Include="Course\images\main\小灰二.jpg" />
     <Content Include="Course\images\main\阿財1.jpg" />
-    <Content Include="Course\test.aspx" />
     <Content Include="css3\firstpage.css" />
     <Content Include="css3\firstpage_css\firstpage.css" />
     <Content Include="css3\homepage.css" />
@@ -186,7 +185,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="StudyPage.aspx" />
     <Content Include="UpdateNotebook.aspx" />
-    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -312,13 +310,6 @@
     </Compile>
     <Compile Include="Course\C_HTML2.aspx.designer.cs">
       <DependentUpon>C_HTML2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Course\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Course\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="cus_mag.aspx.cs">
       <DependentUpon>cus_mag.aspx</DependentUpon>
@@ -457,13 +448,6 @@
     </Compile>
     <Compile Include="UpdateNotebook.aspx.designer.cs">
       <DependentUpon>UpdateNotebook.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
