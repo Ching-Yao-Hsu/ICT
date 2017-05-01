@@ -1,0 +1,26 @@
+﻿ .details {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    font-family: 'Asar';
+}
+
+.details table {
+    margin: auto;
+    margin-top: 20px;
+    width: 600px;
+    border-style: double;
+}
+
+.details th {
+    background-color: rgba(216, 0, 67, 0.87);
+    color: #f7f7f7;
+    font-size: 20px;
+    text-align: center;
+}
+
+.details td {
+    font-size: 18px;
+}
+
+

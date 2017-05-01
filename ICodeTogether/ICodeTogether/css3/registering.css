@@ -1,0 +1,147 @@
+body {
+    background-image: url(../images/register_images/DSC_1046.jpg);
+    background-size: cover;    
+}
+
+
+@media screen and (min-width:1200px) {
+    
+    .fixed-width {
+        width: 1200px;
+    }
+
+    .registering {
+        margin: auto;
+        overflow: hidden;
+        opacity: 1;
+        /*padding-top: 2%;*/
+        /*            background-repeat: no-repeat;*/
+    }
+
+        .registering h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .registering .bottom_message {
+            display: none;
+        }
+
+    .container {
+        float: left;
+        margin-top: 20px;
+        margin-right: 60px;
+        margin-left: 60px;        
+    }    
+
+    .col-2 {
+        position: relative;
+        /*    background-color: #c1a9a9;*/
+        width: 480px;
+        height: 900px;
+    }
+
+    table {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 420px;
+        height: 800px;
+        border-collapse: collapse;
+    }
+
+        table th {
+            text-align: left;
+            height: 30px;
+        }
+
+        table tr td {
+            height: 15px;
+            line-height: 15px;                      
+            background-color: white;
+        }
+
+    .middle {
+        display: table-cell;
+        height: 800px;
+        vertical-align: middle;
+    }
+
+    .content {
+        color: #000000;
+        text-align: center;
+    }
+
+    .col-2 {
+        background-color: aliceblue;
+        opacity: 1;
+        border-radius: 30px;
+    }
+}
+
+
+
+@media screen and (max-width:1200px) {   
+    .fixed-width {
+        width: 100%;
+    }
+
+    .registering {
+        margin: auto;
+        overflow: hidden;
+        padding-top: 5%;
+        opacity: 1;
+        /*            background-repeat: no-repeat;*/
+    }
+
+        .registering h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .registering .container {
+            width: 480px;
+            margin: auto;
+        }
+                
+            .registering .container .middle {
+                display: none;
+            }
+
+        .registering .bottom_message div {
+            padding-bottom:10px;
+            margin-bottom:5%;
+        }
+
+    .container .col-2 {
+        position: relative;
+        /*    background-color: #c1a9a9;*/
+        height: 900px;
+    }
+
+        .container .col-2 table {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            width: 480px;
+            height: 800px;
+            border-collapse: collapse;
+        }
+
+            .container .col-2 table th {
+                text-align: left;
+                height: 30px;               
+            }           
+
+            .container .col-2 table tr td {
+                height: 15px;
+                line-height: 15px;                               
+                background-color:white;
+            }                
+}

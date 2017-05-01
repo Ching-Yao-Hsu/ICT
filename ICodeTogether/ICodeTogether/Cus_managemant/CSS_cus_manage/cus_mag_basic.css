@@ -1,0 +1,22 @@
+﻿#cusmag {
+    margin: auto;
+    width: 600px;
+    margin-top: 50px;
+    height: auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    #cusmag h3 {
+        margin: 0;
+        padding: 0;
+        display: block;
+        text-align: center;
+        color: darkblue;
+        background-color: palevioletred;
+        font-weight: bold;
+    }
+
+.auto-style1 {
+    height: 44px;
+}

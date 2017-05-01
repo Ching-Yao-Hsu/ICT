@@ -1,0 +1,41 @@
+﻿ .menu {
+    height: 50px;
+    width: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+    float: left;
+}
+
+.menu a {
+    display: block;
+    width: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 26px;
+    background-color: #00882a;
+    color: #efefef;
+    transition: 2s all;
+}
+
+    .menu a:hover {
+        color: black;
+        background-color: #fff9b0;
+    }
+
+.content {
+    margin: 0;
+    padding: 0;
+}
+
+

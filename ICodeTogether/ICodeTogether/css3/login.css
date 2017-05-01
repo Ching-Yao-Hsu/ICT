@@ -1,0 +1,70 @@
+body, html, #form1 {
+    height: 100%;
+    
+}
+
+.login {
+    opacity: .9;    
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    height: 100%;
+}
+
+.col-1 {
+    /*background-color: #ba2626;*/
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: auto;
+}
+
+.col-1 .login_table {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.col-1 .login_table table {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.col-1 .login_table table th {
+    font-size: 20px;
+}
+
+.login_table tr td {
+    text-align: center;
+}
+
+.login .header h1 {
+    text-align: center;
+    /*margin-bottom: 30px;*/
+}
+
+.login .login_btn {
+    text-align:center;    
+}
+
+.login .header {
+    width: 480px;
+    margin: auto;
+    line-height: 2em;
+    letter-spacing: 1px;
+    padding-top:5%;
+}
+
+.login .header p {
+    text-align: center;
+}

@@ -1,0 +1,5 @@
+C:\Users\Ryan\Desktop\ICodeTogether\ICodeTogether\ezICT\bin\Debug\ezICT.dll
+C:\Users\Ryan\Desktop\ICodeTogether\ICodeTogether\ezICT\bin\Debug\ezICT.pdb
+C:\Users\Ryan\Desktop\ICodeTogether\ICodeTogether\ezICT\obj\Debug\ezICT.dll
+C:\Users\Ryan\Desktop\ICodeTogether\ICodeTogether\ezICT\obj\Debug\ezICT.pdb
+C:\Users\Ryan\Desktop\ICodeTogether\ICodeTogether\ezICT\obj\Debug\ezICT.csprojResolveAssemblyReference.cache

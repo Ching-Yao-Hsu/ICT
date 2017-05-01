@@ -1,0 +1,29 @@
+﻿.mynote h3 {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: center;
+    width: 600px;
+    color: darkblue;
+    background-color: palevioletred;
+    font-weight: bold;
+}
+
+.mynote {
+    margin: auto;
+    margin-top: 50px;
+    width: 600px;
+    font-size: 18px;
+}
+
+    .mynote table {
+        width: 600px;
+    }
+
+    .mynote th {
+        background-color: lightyellow;
+    }
+
+.fa fa-trash-o {
+    color: red;
+}
