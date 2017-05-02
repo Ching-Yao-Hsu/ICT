@@ -1,0 +1,245 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.master.cs" Inherits="ICodeTogether.main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css3/desktop.css" rel="stylesheet" />    
+    <link href="css3/ham_phone.css" rel="stylesheet" />
+    <link href="css3/phone.css" rel="stylesheet" />
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link href="css3/global.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <%--<link href="Content/bootstrap.min.css" rel="stylesheet" />--%>
+
+    <style>  
+         body,html {
+            background-color:aliceblue;
+            position:relative;
+            height:100%;
+        }
+
+        #gotop {
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .input_search {
+            float: right;
+            line-height: 40px;
+            display: none;
+        }
+
+        nav .login {
+            float: right;
+        }
+
+        .logmsg {
+            color:white;
+            clear:both;
+            float: right;
+            line-height: 40px;
+            display: none;
+        }
+
+        #hlp_login1, #hlp_login2 {
+            text-decoration: none;
+        }
+
+        nav .login:hover {
+            background-color: #919191;
+            font-size: 18px;
+        }
+
+        @media screen and (min-width:1200px) {
+            .main_nav {
+                height: 40px;
+            }
+        }
+
+        #lbl_loginmsg {              
+            padding-right:20px;
+            float:right;
+        }
+
+        .loginmsg {
+            text-align:right;            
+        }
+
+        #btn_search {
+            height: 30px;
+        }
+
+        #title ul {
+            display: none;
+        }
+        .class_menu ul {
+            margin:0;
+            padding:0;
+        }
+        .class_menu ul li a {
+            text-decoration: none;
+        }
+
+        .aaa {            
+            clear:both;
+        }        
+
+        footer {
+            clear:both;
+        }
+
+        #txt_search {            
+            float:left;
+        }
+
+        #btn_search {            
+            float:left;
+        }
+
+        .input_search {
+            padding-top:5px;
+        }
+
+        #icon_search {
+            padding-top:5px;
+            text-decoration:none;
+            height:40px;
+        }
+
+        #lkb_login, #lkb_logout{
+            text-decoration:none;
+        }
+
+        .logo img {
+            height:35px;
+            width:80px;            
+        }
+        .logo a {
+            padding-left:10px;
+            padding-right:10px;
+        }        
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".hamburger").click(function () {
+                $(".hamburger").toggleClass("hamburger-x");
+                $("header nav .class_menu ul").slideToggle();
+            });
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 1200) {
+                    $("header nav .class_menu ul").show();
+                } else {
+                    $("header nav .class_menu ul").hide();
+                    $(".hamburger").removeClass("hamburger-x");
+                }
+            });
+
+            $("#gotop").hide();
+
+            $(window).scroll(function () {
+                var sr = $(window).scrollTop();
+                var _in = "rollIn";
+                var _out = "hinge";
+
+                if (sr > 50) {
+                    $("#gotop").show().removeClass(_out).addClass(_in);
+                } else {
+                    $("#gotop").removeClass(_in).addClass(_out);
+                }
+            });
+            $("#gotop").click(function () {
+                $("html,body").animate({
+                    scrollTop: 0
+                });
+            });
+
+
+            $("#icon_search").click(function () {
+                $(".input_search").fadeToggle();
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="main_head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+       
+            <header class="full-width">  
+                
+                <div class="loginmsg">
+                        <asp:Label ID="lbl_loginmsg" runat="server" Font-Size="X-Small" ForeColor="White" Width="100%" BackColor="#666666"></asp:Label></div>
+                <div class="aaa"></div>
+                <nav class="main_nav clearfix">
+                    <div class="logo"><a href="HomePage.aspx">
+                        <img src="images/main/logo_副本_副本.png" /></a></div>  
+                    <%--<div class="search">
+                        <asp:Label ID="lbl_loginmsg" runat="server" Font-Size="Medium" ForeColor="White"></asp:Label></div>--%>
+                    <div class="search">
+                        <a href="#" class="fa fa-search fa-2x" aria-hidden="true" id="icon_search">                            
+                        </a>
+                    </div>
+                    <div class="input_search">
+                        <asp:TextBox ID="txt_search" runat="server" placeholder="搜尋" Width="100px" Height="100%" class="form-control"></asp:TextBox>
+                        <asp:Button ID="btn_search" runat="server" Text="搜尋" OnClick="btn_search_Click" class="btn btn-default" />
+
+                    </div>
+                    <div class="login">
+                        <asp:LinkButton ID="lkb_login" runat="server" PostBackUrl="~/SecondPage/Login.aspx">登入</asp:LinkButton>
+                        <asp:LinkButton ID="lkb_logout" runat="server" OnClick="lkb_logout_Click" OnClientClick='return confirm("確定要登出?")'>登出</asp:LinkButton>
+                    </div>                    
+                    <div class="hamburger"><span></span></div>
+                    <div class="class_menu">
+                        <ul>
+                            <asp:Repeater ID="rpt_menuok" runat="server" DataSourceID="SqlDataSource1" Visible="True">
+                                <ItemTemplate>
+                                    <li><a href="<%# Eval("url") %>"><%# Eval("mname") %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="contentplaceholder">
+                <asp:ContentPlaceHolder ID="main_content" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="gotop" class="animated">TOP</div>
+
+             <footer class="footer" id="footer">
+                <div class="bottom">
+                    <div class="copyrights">
+                        ICodeTogether-Team DESING &copy; 2017
+                    </div>
+                </div>
+            </footer>            
+        
+        
+
+    </form>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ICodeTogetherConnectionString %>" SelectCommand="SELECT * FROM [Navbar_menu] WHERE ([isenable] = @isenable) ORDER BY [mno]">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="1" Name="isenable" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+</body>
+</html>

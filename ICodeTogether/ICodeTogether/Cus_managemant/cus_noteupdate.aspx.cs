@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -29,7 +30,7 @@ namespace ICodeTogether.Cus_managemant
         }
         protected void qry_note()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "SELECT * FROM dbo.Note WHERE NoteNo = @NoteNo";
             using (SqlConnection conn=new SqlConnection(strconn))
             {
@@ -51,7 +52,7 @@ namespace ICodeTogether.Cus_managemant
         protected void updateNote(string strNoteContent)
         {
 
-            SqlConnection Conn = new SqlConnection("Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString);
             Conn.Open();
             string strncmd = "UPDATE Note SET NoteContent = @NoteContent WHERE NoteNo =@NoteNo";
             SqlCommand cmd = new SqlCommand(strncmd, Conn);

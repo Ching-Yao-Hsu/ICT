@@ -98,13 +98,6 @@ namespace ICodeTogether
                 lbl_message1.Text = e.Message;
                 lbl_message2.Text = e.Message;
             }
-
-
-
-
-
-
-
         }        
     }
 }

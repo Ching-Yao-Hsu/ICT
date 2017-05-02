@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -15,7 +16,10 @@ namespace ICodeTogether.Cus_managemant
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!Page.IsPostBack)
+            {
+               
+            }
             
            
         }
@@ -33,7 +37,7 @@ namespace ICodeTogether.Cus_managemant
         /// </summary>
         protected void showmoney()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "SELECT CoursePrice FROM Course WHERE CourseName=@CourseName";
             SqlConnection Conn = new SqlConnection(strconn);
             Conn.Open();
@@ -62,11 +66,49 @@ namespace ICodeTogether.Cus_managemant
         
         }
         /// <summary>
+        /// 判斷餘額
+        /// </summary>
+        
+        protected void checkoverage()
+        {
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
+            string strcmd = "SELECT TOP 1  (SELECT  SUM(amount) FROM [dbo].[vi_course_detail] AS T2 WHERE [OrderDate] <= T1.[OrderDate] and [CustID] = @CustID) AS balance FROM[dbo].[vi_course_detail] AS T1  WHERE[CustID] = @CustID ORDER BY[OrderDate] DESC";
+            SqlConnection Conn = new SqlConnection(strconn);
+            Conn.Open();
+            SqlCommand cmd = new SqlCommand(strcmd, Conn);
+            SqlDataAdapter da = new SqlDataAdapter(strcmd, Conn);
+            da.SelectCommand.Parameters.AddWithValue("@CustID", Session["savepass"].ToString());
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count <= 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertmessage", @"alert('餘額為0,請先加值')", true);
+            }
+            else
+            {
+                int overage = int.Parse(dt.Rows[0][0].ToString());
+                int money = int.Parse(lbl_money.Text);
+                if (overage <= money)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertmessage", @"alert('餘額不足請先加值')", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertmessage", @"alert('已購買成功,開始使用課程')", true);
+                    InsertOrder();
+                    Response.Redirect(Request.Url.ToString());
+                }
+            }
+               
+            Conn.Close();
+
+        }
+        /// <summary>
         /// 判斷是否購買過
         /// </summary>
         protected void checkorder()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             SqlConnection Conn = new SqlConnection(strconn);
             Conn.Open();
             SqlCommand cmd = new SqlCommand("SELECT*FROM Order_Master WHERE CustID=@CustID AND CourseNo=(SELECT CourseNo FROM Course WHERE CourseName=@CourseName)", Conn);
@@ -91,7 +133,7 @@ namespace ICodeTogether.Cus_managemant
         /// </summary>
         protected void InsertOrder()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             SqlConnection Conn = new SqlConnection(strconn);
             Conn.Open();
             SqlCommand cmd = new SqlCommand("InsertOrder", Conn);
@@ -109,10 +151,8 @@ namespace ICodeTogether.Cus_managemant
 
         protected void btn_buy_Click(object sender, EventArgs e)
         {
-           
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertmessage", @"alert('已購買成功,開始使用課程')", true);
-            InsertOrder();
-            Response.Redirect(Request.Url.ToString());
+
+            checkoverage();
 
         }
         /// <summary>

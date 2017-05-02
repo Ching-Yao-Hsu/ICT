@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -40,7 +41,7 @@ namespace ICodeTogether.Cus_managemant
          **********************************************************************************************/
         protected void qry_customer()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "SELECT * FROM dbo.Customer WHERE CustName = @CustName";
             using (SqlConnection Conn = new SqlConnection(strconn))
             {
@@ -91,7 +92,7 @@ namespace ICodeTogether.Cus_managemant
         protected void updcust(string strCustID,string strCustName,DateTime dtcustbirthday,string strcusttel,string strcustaddr,string strcustemail)
         {
 
-            SqlConnection Conn = new SqlConnection("Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString);
             Conn.Open();
             SqlCommand cmd = new SqlCommand("updatecustomer", Conn);
             cmd.CommandType = CommandType.StoredProcedure;

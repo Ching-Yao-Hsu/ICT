@@ -25,9 +25,7 @@ namespace ICodeTogether.admin
                 lv_joincourse.DataSourceID = "sds_search";
             }
             lv_joinexamination.DataSourceID = "";
-            lv_joinexamination.Visible = false;
-            lv_modifyExam.DataSourceID = "";
-            lv_modifyExam.Visible = false;
+            lv_joinexamination.Visible = false;            
         }
 
         protected void lv_joincourse_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -35,20 +33,9 @@ namespace ICodeTogether.admin
             if (e.CommandName == "Select")
             {
                 lv_joinexamination.DataSourceID = "sds_joinexamination";
-                lv_joinexamination.Visible = true;
-                lv_modifyExam.DataSourceID = "";
-                lv_modifyExam.Visible = false;
+                lv_joinexamination.Visible = true;                
             }
-        }
-
-        protected void lv_joinexamination_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Select")
-            {
-                lv_modifyExam.DataSourceID = "sds_modifyExamDetail";
-                lv_modifyExam.Visible = true;                
-            }
-        }
+        }        
 
         protected void lv_modifyExam_ItemCommand(object sender, ListViewCommandEventArgs e)
         {

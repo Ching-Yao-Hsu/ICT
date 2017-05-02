@@ -58,15 +58,6 @@ namespace ICodeTogether.admin {
         protected global::System.Web.UI.WebControls.ListView lv_joinexamination;
         
         /// <summary>
-        /// lv_modifyExam 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lv_modifyExam;
-        
-        /// <summary>
         /// sds_joincourse 控制項。
         /// </summary>
         /// <remarks>
@@ -92,14 +83,5 @@ namespace ICodeTogether.admin {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sds_search;
-        
-        /// <summary>
-        /// sds_modifyExamDetail 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_modifyExamDetail;
     }
 }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -47,7 +48,7 @@ namespace ICodeTogether.Cus_managemant
 
         protected void addstored(string strCustID, DateTime dtstoredate, string storedfunction,int storedvalues)
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "INSERT INTO Cus_Stored(CustID,Stored_date,Stored_function,Stored_value)VALUES( @CustID,@storedate,@storedfunction,@storedvalues)";
             SqlConnection Conn = new SqlConnection(strconn);
             SqlCommand cmd = new SqlCommand(strcmd, Conn);
@@ -78,7 +79,7 @@ namespace ICodeTogether.Cus_managemant
             int storedvalues = int.Parse(lbl_money.Text);
             addstored(strCustID, dtstoredate, storedfunction, storedvalues);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertmessage", @"alert('加值成功')", true);
-            
+            upbalances();
             Response.Redirect("cus_stored_details.aspx");
             
         }
@@ -88,7 +89,7 @@ namespace ICodeTogether.Cus_managemant
          **********************************************************************************************/
         protected void showbalances()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "SELECT TOP 1  (SELECT  SUM(amount) FROM [dbo].[vi_course_detail] AS T2 WHERE [OrderDate] <= T1.[OrderDate] and [CustID] = @CustID) AS balance FROM[dbo].[vi_course_detail] AS T1  WHERE[CustID] = @CustID ORDER BY[OrderDate] DESC ";
             
             SqlConnection Conn = new SqlConnection(strconn);
@@ -120,7 +121,7 @@ namespace ICodeTogether.Cus_managemant
          **********************************************************************************************/
         protected void upbalances()
         {
-            string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+            string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string strcmd = "UPDATE Customer SET CustOverage=@CustOverage WHERE CustID = @CustID ";
             SqlConnection Conn = new SqlConnection(strconn);
             SqlCommand cmd = new SqlCommand(strcmd, Conn);

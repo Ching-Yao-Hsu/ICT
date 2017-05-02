@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -30,7 +31,7 @@ namespace ICodeTogether.Cus_managemant
                     if (CB.Checked)
                     {
                         Response.Write(CB.Text + "<br>");
-                        string strconn = "Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True";
+                        string strconn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
                         string strcmd = "DELETE dbo.Note WHERE NoteNo ='"+CB.Text+"'";
                         SqlConnection conn = new SqlConnection(strconn);
                         conn.Open();

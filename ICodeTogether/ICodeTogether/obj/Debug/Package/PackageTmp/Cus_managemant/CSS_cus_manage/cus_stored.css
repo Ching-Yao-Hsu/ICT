@@ -1,0 +1,86 @@
+﻿ #logo {
+    margin: auto;
+    display: block;
+    width: 300px;
+    height: 200px;
+    background-image: url('http://localhost:54950/image/logo_副本_副本_副本.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.stored {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 600px;
+    text-align: center;
+    font-family: 'Asar';
+}
+
+    .stored h2 {
+        margin: auto;
+        display: block;
+        width: 500px;
+        height: 80px;
+        line-height: 80px;
+        border: 10px;
+        border-style: double;
+        border-color: #CCCCCC;
+        background-color: #FF6666;
+        font-weight: bold;
+    }
+
+    .stored table {
+        margin: auto;
+        margin-top: 20px;
+        width: 500px;
+        border-style: double;
+    }
+
+    .stored th {
+        margin: auto;
+        display: block;
+        text-align: center;
+        font-size: 26px;
+        width: 500px;
+        background-color: #ffe3ce;
+        border: 5px;
+        border-style: double;
+        border-color: #f0c44c;
+    }
+
+.stored_details {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    margin-top: 100px;
+    width: 600px;
+    text-align: center;
+    font-family: 'Asar';
+}
+
+    .stored_details table {
+        margin: auto;
+        margin-top: 20px;
+        width: 500px;
+        border-style: double;
+    }
+
+    .stored_details th {
+        font-size: 20px;
+        width: 100px;
+    }
+
+    .stored_details td {
+        text-align: left;
+    }
+
+.auto-style1 {
+    height: 28px;
+}
+
+hr {
+    border: solid 1px;
+}
+
+

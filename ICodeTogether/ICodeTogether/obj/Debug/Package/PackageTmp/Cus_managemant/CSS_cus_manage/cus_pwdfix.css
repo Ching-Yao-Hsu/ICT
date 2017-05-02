@@ -1,0 +1,30 @@
+﻿.mypwd h3 {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 600px;
+    text-align: center;
+    color: darkblue;
+    background-color: palevioletred;
+    font-weight: bold;
+}
+
+.mypwd {
+    margin: auto;
+    margin-top: 50px;
+    width: 600px;
+    font-size: 18px;
+}
+
+    .mypwd table {
+        width: 600px;
+    }
+
+    .mypwd th {
+        background-color: lightyellow;
+    }
+
+    .mypwd td {
+        text-align: center;
+    }
+

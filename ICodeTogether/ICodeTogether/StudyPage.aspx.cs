@@ -92,7 +92,7 @@ namespace ICodeTogether
         {
             _checkdb = false;
             string _str_conn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
-            string _str_cmd = "SELECT CourseNo FROM Course_deal WHERE CustID = @CustID";
+            string _str_cmd = "SELECT CourseNo FROM Order_Master WHERE CustID = @CustID";
             string[] _str_CourseNo;
             using (SqlConnection conn = new SqlConnection(_str_conn))
             {               

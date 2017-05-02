@@ -68,12 +68,12 @@ namespace ICodeTogether
 
                     cmd.Parameters["@name"].Value = txtName.Text;
                     cmd.Parameters["@content"].Value = b;
-                    cmd.Parameters["@datetime"].Value = DateTime.Now.ToString();
+                    //cmd.Parameters["@datetime"].Value = DateTime.Now.ToString();
                     cmd.Parameters["@unitNo"].Value = "U005";
                     cmd.ExecuteNonQuery();
                     //Response.Redirect(Request.RawUrl);
                     cmd.Cancel();
-                    Repeater1.DataSourceID = "SqlDataSource1"; //重新讀取
+                    Repeater1.DataSourceID = "SqlDataSource1";
                 }
             }
             catch (Exception)
@@ -86,8 +86,7 @@ namespace ICodeTogether
         {
             string str_conn = WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString;
             string str_cmd = "SELECT CustName FROM Customer WHERE CustID = @CustID ";
-            string str_CustID = Session["savepass"].ToString();
-            Response.Write(str_CustID);
+            string str_CustID = Session["savepass"].ToString();            
             using (SqlConnection conn = new SqlConnection(str_conn))
             {
                 conn.Open();

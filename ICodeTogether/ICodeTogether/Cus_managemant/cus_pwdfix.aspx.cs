@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace ICodeTogether.Cus_managemant
 {
@@ -92,7 +93,7 @@ namespace ICodeTogether.Cus_managemant
 
         protected void Uppassword(string strCustpwd)
         {
-            SqlConnection conn = new SqlConnection("Data Source=.;Initial Catalog=ICodeTogether;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ICodeTogetherConnectionString"].ConnectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand("UPDATE Customer SET CustPassword=@newpwd WHERE CustPassword= @CustPassword", conn);
             cmd.Parameters.Add(new SqlParameter("@CustPassword", SqlDbType.NVarChar));

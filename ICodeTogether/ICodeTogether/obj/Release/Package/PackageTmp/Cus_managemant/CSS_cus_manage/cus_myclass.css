@@ -1,0 +1,59 @@
+﻿.myclass h3 {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: center;
+    width: 600px;
+    color: darkblue;
+    background-color: palevioletred;
+    font-weight: bold;
+}
+
+.myclass {
+    margin: auto;
+    margin-top: 50px;
+    width: 600px;
+    font-size: 18px;
+}
+
+    .myclass table {
+        width: 600px;
+    }
+
+    .myclass th {
+        background-color: lightyellow;
+    }
+
+.order_details {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    margin-top: 100px;
+    width: 600px;
+    text-align: center;
+    font-family: 'Asar';
+}
+
+    .order_details table {
+        margin: auto;
+        margin-top: 20px;
+        width: 500px;
+        border-style: double;
+    }
+
+    .order_details th {
+        font-size: 20px;
+        width: 100px;
+    }
+
+    .order_details td {
+        text-align: left;
+    }
+
+.auto-style1 {
+    height: 28px;
+}
+
+hr {
+    border: solid 1px;
+}
